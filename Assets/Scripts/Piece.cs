@@ -40,9 +40,9 @@ public class Piece : MonoBehaviour {
 
         this.lockTime += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+        if (Input.GetKeyDown(KeyCode.DownArrow)) {
             Rotate(-1);
-        } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+        } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
             Rotate(1);
         }
 
@@ -81,6 +81,7 @@ public class Piece : MonoBehaviour {
 
     private void Lock() {
         this.board.Set(this);
+        this.board.ClearLines();
         this.board.SpawnPiece();
     }
 
@@ -134,7 +135,7 @@ public class Piece : MonoBehaviour {
                 case Tetromino.I:
                 case Tetromino.O:
                 cell.x -= 0.5f;
-                cell.x -= 0.5f;
+                cell.y -= 0.5f;
 
                 x = Mathf.CeilToInt(
                         (cell.x * matrix[0] * direction) +
