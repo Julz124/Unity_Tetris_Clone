@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
-public class Tetromino : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public enum Tetromino {
+    I,
+    O,
+    T,
+    J,
+    L,
+    S,
+    Z
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+[System.Serializable]
+public struct TetrominoData {
+    public Tetromino tetromino;
+    public Tile tile;
+    public Vector2Int[] cells { get; private set; }
+
+    public void Initialize() {
+        this.cells = Data.Cells[this.tetromino];
     }
 }
